@@ -1,6 +1,6 @@
 import time
 
-arr = [43, 2, 1, 77, 53, 54, 44, 6]
+arr = [27, 12, 1, 77, 55, 33, 48, 63]
 
 # TO-DO: Complete the selection_sort() function below
 
@@ -76,7 +76,7 @@ def counting_sort(arr, maximum=None):
         return arr
 
     if min(arr) < 0:
-        return "Error, negative numbers not allowed in the Count Sort"
+        return "Error, negative numbers not allowed."
 
     max_value = max(arr) + 1
     counts = [0] * (max_value)
@@ -97,9 +97,46 @@ def counting_sort(arr, maximum=None):
     return result
 
 
-# print(counting_sort([4, 2, 2, 8, 3, 3, 1]))
 print('\nCounting Sort')
 counting_start = time.time()
 print(counting_sort(arr))
+counting_end = time.time()
+print(f"Runtime: {counting_end - counting_start}")
+
+
+def countingSort(array):
+    size = len(array)
+    output = [0] * size
+
+    # Initialize count array
+    count = [0] * 10
+
+    # Store the count of each elements in count array
+    for i in range(0, size):
+        count[array[i]] += 1
+
+    # Store the cummulative count
+    for i in range(1, 10):
+        count[i] += count[i - 1]
+
+    # Find the index of each element of the original array in count array
+    # place the elements in output array
+    i = size - 1
+    while i >= 0:
+        output[count[array[i]] - 1] = array[i]
+        count[array[i]] -= 1
+        i -= 1
+
+    # Copy the sorted elements into original array
+    for i in range(0, size):
+        array[i] = output[i]
+
+
+data = [4, 2, 2, 8, 3, 3, 1]
+
+print('\nCounting Sort in Ascending Order: ')
+counting_start = time.time()
+countingSort(data)
+print(data)
 counting_end = time.time()
 print(f"Runtime: {counting_end - counting_start}")
