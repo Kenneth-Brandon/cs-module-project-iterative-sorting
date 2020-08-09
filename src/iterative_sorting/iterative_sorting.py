@@ -51,6 +51,30 @@ print(bubble_sort(arr))
 bubble_end = time.time()
 print(f"Runtime: {bubble_end - bubble_start}")
 
+
+def bubble__sort(our_list):
+    has_swapped = True
+
+    num_of_iterations = 0
+
+    while(has_swapped):
+        has_swapped = False
+        for i in range(len(our_list) - num_of_iterations - 1):
+            if our_list[i] > our_list[i+1]:
+                our_list[i], our_list[i+1] = our_list[i+1], our_list[i]
+                has_swapped = True
+        num_of_iterations += 1
+
+
+our_list = [3.24, 2.67, 1.88, 2.23, 3.08]
+
+print('\nBubble Sort')
+bubble_start = time.time()
+bubble__sort(our_list)
+print(our_list)
+bubble_end = time.time()
+print(f"Runtime: {bubble_end - bubble_start}")
+
 '''
 STRETCH: implement the Counting Sort function below
 
@@ -134,7 +158,7 @@ def countingSort(array):
 
 data = [4, 2, 2, 8, 3, 3, 1]
 
-print('\nCounting Sort in Ascending Order: ')
+print('\nCounting Sort')
 counting_start = time.time()
 countingSort(data)
 print(data)
